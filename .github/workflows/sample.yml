@@ -1,0 +1,55 @@
+name: 'terraform-cmp'
+ 
+on:
+  workflow_dispatch:
+    inputs:
+#      resource_group:
+#        description: "resource group name"
+#        required: true
+#        type: string
+      dxc_region:
+        description: "dxc_region"
+        required: true
+        type: string
+      dxc_code_sites:
+        description: "dxc_code_sites"
+        required: true
+        type: string
+jobs:
+  terraform:
+    name: 'Terraform'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+    runs-on: ubuntu-latest
+    environment: production
+ 
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        working-directory: "VD-terraform-caf-cb"
+ 
+    steps:
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v2
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+#      run: terraform plan -no-color -out main.tfplan -var-file "virtual_machine.tfvars" -var resource_group="${{ github.event.inputs.resource_group }}" -var dxc_region="${{ github.event.inputs.dxc_region }}" -var dxc_code_sites="${{ github.event.inputs.dxc_code_sites }}" 
+      run: terraform plan -no-color -out main.tfplan -var-file "exemple.outo.tfvars" -var dxc_region="${{ github.event.inputs.dxc_region }}" -var dxc_code_sites="${{ github.event.inputs.dxc_code_sites }}" 
+
+      continue-on-error: true
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply "main.tfplan"
+      continue-on-error: true
