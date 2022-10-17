@@ -45,7 +45,7 @@ jobs:
     - name: Terraform Plan
       id: plan
 #      run: terraform plan -no-color -out main.tfplan -var-file "virtual_machine.tfvars" -var resource_group="${{ github.event.inputs.resource_group }}" -var dxc_region="${{ github.event.inputs.dxc_region }}" -var dxc_code_sites="${{ github.event.inputs.dxc_code_sites }}" 
-      run: terraform plan -no-color -out main.tfplan -var-file "example.outo.tfvars" -var dxc_region="${{ github.event.inputs.dxc_region }}" -var dxc_code_sites="${{ github.event.inputs.dxc_code_sites }}" 
+      run: terraform plan -no-color -out main.tfplan -var-file "example.auto.tfvars" -var dxc_region="${{ github.event.inputs.dxc_region }}" -var dxc_code_sites="${{ github.event.inputs.dxc_code_sites }}" 
 
       continue-on-error: true
 
