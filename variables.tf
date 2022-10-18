@@ -30,9 +30,9 @@ variable "resource_groups" {
   default = {}
 }
 
-variable "logged_user_objectId" {
-  default = {}
-}
+#variable "logged_user_objectId" {
+#  default = {}
+#}
 
 variable "provider_azurerm_features_keyvault" {
   default = {
