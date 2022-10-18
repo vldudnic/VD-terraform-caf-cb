@@ -34,7 +34,7 @@ module "caf" {
 
   global_settings             = var.global_settings
   resource_groups             = var.resource_groups
-  logged_user_objectId        = var.logged_user_objectId
+#  logged_user_objectId        = var.logged_user_objectId
   keyvaults = var.keyvaults
 
 
