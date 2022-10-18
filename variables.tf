@@ -1,3 +1,13 @@
+variable "dxc_region" {
+  default     = {}
+  description = "Alstom DXC region"
+}
+
+variable "dxc_code_sites" {
+  default     = {}
+  description = "Alstom DXC code site"
+}
+
 variable "virtual_machines" {
   default     = {}
   description = "Create a virtual machine from CAF module"
