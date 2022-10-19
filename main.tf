@@ -2,6 +2,12 @@ terraform {
   required_providers {
   }
   required_version = ">= 0.15"
+    backend "azurerm" {
+        resource_group_name  = "tfstate"
+        storage_account_name = "tfstateu39j9"
+        container_name       = "tfstate"
+        key                  = "terraform.tfstate"
+    }
 }
 
 provider "azurerm" {
@@ -10,36 +16,6 @@ provider "azurerm" {
 #      purge_soft_delete_on_destroy = var.provider_azurerm_features_keyvault.purge_soft_delete_on_destroy
 #    }
   }
-}
-
-resource "random_string" "resource_code" {
-  length  = 5
-  special = false
-  upper   = false
-}
-
-resource "azurerm_resource_group" "tfstate" {
-  name     = "tfstate"
-  location = "West Europe"
-}
-
-resource "azurerm_storage_account" "tfstate" {
-  name                     = "tfstate${random_string.resource_code.result}"
-  resource_group_name      = azurerm_resource_group.tfstate.name
-  location                 = azurerm_resource_group.tfstate.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  allow_blob_public_access = true
-
-  tags = {
-    environment = "staging"
-  }
-}
-
-resource "azurerm_storage_container" "tfstate" {
-  name                  = "tfstate"
-  storage_account_name  = azurerm_storage_account.tfstate.name
-  container_access_type = "blob"
 }
 
 provider "azurerm" {
@@ -65,7 +41,7 @@ module "caf" {
   global_settings             = var.global_settings
   resource_groups             = var.resource_groups
 #  logged_user_objectId        = var.logged_user_objectId
-  keyvaults = var.keyvaults
+#  keyvaults = var.keyvaults
 
 
   compute = {
