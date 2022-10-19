@@ -18,9 +18,10 @@ variable "vnets" {
 variable "public_ip_addresses" {
   default = {}
 }
-#variable "keyvaults" {
-#  default = {}
-#}
+
+variable "keyvaults" {
+  default = {}
+}
 
 variable "global_settings" {
   default = {}
