@@ -18,9 +18,9 @@ variable "vnets" {
 variable "public_ip_addresses" {
   default = {}
 }
-variable "keyvaults" {
-  default = {}
-}
+#variable "keyvaults" {
+#  default = {}
+#}
 
 variable "global_settings" {
   default = {}
@@ -34,9 +34,9 @@ variable "resource_groups" {
 #  default = {}
 #}
 
-variable "provider_azurerm_features_keyvault" {
-  default = {
-    purge_soft_delete_on_destroy = true
-  }
-}
+#variable "provider_azurerm_features_keyvault" {
+#  default = {
+#    purge_soft_delete_on_destroy = true
+#  }
+#}
 
