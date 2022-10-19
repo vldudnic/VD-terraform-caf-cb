@@ -32,7 +32,7 @@ virtual_machines = {
     os_type = "linux"
 
     # the auto-generated ssh key in keyvault secret. Secret name being {VM name}-ssh-public and {VM name}-ssh-private
-    keyvault_key = "example_vm_rg1"
+ #   keyvault_key = "example_vm_rg1"
 
     # Define the number of networking cards to attach the virtual machine
     networking_interfaces = {
@@ -95,24 +95,24 @@ virtual_machines = {
 }
 
 
-keyvaults = {
-  example_vm_rg1 = {
-    name                        = "vmlinuxakv"
-    resource_group_key          = "vm_region1"
-    sku_name                    = "standard"
-    soft_delete_enabled         = true
-    purge_protection_enabled    = true
-    enabled_for_disk_encryption = true
-    tags = {
-      env = "Standalone"
-    }
-    creation_policies = {
-      logged_in_user = {
-        secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
-      }
-    }
-  }
-}
+#keyvaults = {
+#  example_vm_rg1 = {
+#    name                        = "vmlinuxakv"
+#    resource_group_key          = "vm_region1"
+#    sku_name                    = "standard"
+#    soft_delete_enabled         = true
+#    purge_protection_enabled    = true
+#    enabled_for_disk_encryption = true
+#    tags = {
+#      env = "Standalone"
+#    }
+#    creation_policies = {
+#      logged_in_user = {
+#        secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
+#      }
+#    }
+#  }
+#}
 
 
 vnets = {
